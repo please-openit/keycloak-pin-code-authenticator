@@ -31,11 +31,16 @@ jobs:
           TAG="${GITHUB_REF_NAME}"
           # Strip leading 'v' prefix
           VERSION="${TAG#v}"
-          # Extract major.minor for maintenance branch
-          MAJOR_MINOR="${VERSION%.*}"
+          # Keycloak stream from the -kc.<major>.<minor> suffix: one maintenance branch per KC minor
+          KC="${VERSION##*-kc.}"
+          if [ "$KC" = "$VERSION" ]; then
+            echo "::error::tag $TAG has no -kc.<version> suffix"
+            exit 1
+          fi
+          KC_MINOR="$(echo "$KC" | cut -d. -f1,2)"
           echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
-          echo "branch=release/${MAJOR_MINOR}.x" >> "$GITHUB_OUTPUT"
+          echo "branch=release/${KC_MINOR}" >> "$GITHUB_OUTPUT"
 
       - name: Create maintenance branch
         run: |

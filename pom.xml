@@ -21,7 +21,7 @@
 
     <groupId>it.pleaseopen.keycloak.extensions</groupId>
     <artifactId>keycloak-pin-authenticator</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-kc.26.7</version>
     <packaging>jar</packaging>
 
     <name>Keycloak PIN Code Authenticator</name>
@@ -42,7 +42,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <!-- Keycloak version -->
-        <keycloak.version>26.5.3</keycloak.version>
+        <keycloak.version>26.7.0</keycloak.version>
         
         <!-- Testing dependencies -->
         <junit.version>5.10.2</junit.version>
